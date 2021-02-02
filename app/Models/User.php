@@ -35,11 +35,16 @@ class User extends Authenticatable
     /**
      * The attributes that should be cast to native types.
      *
-     * @var array
+    * @var array
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function follows()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'user_id', 'following_user_id');
+    }
 
     public function getAvatarAttribute()
     {
@@ -49,5 +54,10 @@ class User extends Authenticatable
     public function timeline()
     {
         return Tweet::where('user_id', $this->id)->latest()->get();
+    }
+
+    public function follow(User $user)
+    {
+        return $this->follows()->save($user);
     }
 }
