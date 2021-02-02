@@ -13,7 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/tweets', [\App\Http\Controllers\TweetController::class, 'store']);
+
 Auth::routes();
 
-Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', function() {
+    return view('auth.login');
+});
+
+Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
