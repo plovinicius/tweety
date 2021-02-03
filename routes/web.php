@@ -19,6 +19,9 @@ Route::middleware('auth')->group(function() {
     Route::post('/tweets', [Controllers\TweetController::class, 'store']);
 
     Route::post('/profiles/{user}/follow', [Controllers\FollowController::class, 'store']);
+
+    Route::get('/profiles/{user}/edit', [Controllers\ProfileController::class, 'edit'])
+        ->middleware('can:edit,user');
 });
 
 Auth::routes();

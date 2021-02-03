@@ -13,4 +13,9 @@ class ProfileController extends Controller
 
         return view('profiles.show', compact('user', 'tweets'));
     }
+
+    public function edit(User $user)
+    {
+        return view('profiles.edit', compact('user'));
+    }
 }
