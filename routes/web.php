@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,13 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/tweets', [\App\Http\Controllers\TweetController::class, 'store']);
+Route::middleware('auth')->group(function() {
+    Route::get('/tweets', [Controllers\TweetController::class, 'index'])->name('home');
+    Route::post('/tweets', [Controllers\TweetController::class, 'store']);
+});
 
 Auth::routes();
+
+Route::get('/profiles/{user}', [Controllers\ProfileController::class, 'show'])->name('profile');
 
 Route::get('/', function() {
     return view('auth.login');
 });
-
-Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
-

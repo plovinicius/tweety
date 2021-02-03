@@ -51,9 +51,22 @@ class User extends Authenticatable
         return "https://i.pravatar.cc/40?u=". $this->email;
     }
 
+    public function getBigAvatarAttribute()
+    {
+        return "https://i.pravatar.cc/150?u=". $this->email;
+    }
+
     public function timeline()
     {
-        return Tweet::where('user_id', $this->id)->latest()->get();
+        $ids = $this->follows()->pluck('users.id');
+        $ids->push($this->id);
+
+        return Tweet::whereIn('user_id', $ids)->latest()->get();
+    }
+
+    public function tweets()
+    {
+        return $this->hasMany(Tweet::class);
     }
 
     public function follow(User $user)
