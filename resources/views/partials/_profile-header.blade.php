@@ -20,7 +20,8 @@
             <x-follow-button :user="$user"></x-follow-button>
         </div>
 
-        <img src="{{ $user->big_avatar }}" alt=""
+        <img src="{{ $user->avatar }}" alt=""
+            width="150" height="150"
             class="absolute rounded-full left-0 right-0 mx-auto"
             style="width: 150px; top: 220px">
     </div>

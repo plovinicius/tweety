@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('content')
 <main class="sm:container sm:mx-auto sm:max-w-lg sm:mt-10">
@@ -13,6 +13,21 @@
                 <form class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8" method="POST"
                     action="{{ route('register') }}">
                     @csrf
+
+                    <div class="flex flex-wrap">
+                        <label for="username" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
+                            {{ __('Username') }}:
+                        </label>
+
+                        <input id="username" type="text" class="form-input w-full @error('username')  border-red-500 @enderror"
+                            username="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+
+                        @error('username')
+                        <p class="text-red-500 text-xs italic mt-4">
+                            {{ $message }}
+                        </p>
+                        @enderror
+                    </div>
 
                     <div class="flex flex-wrap">
                         <label for="name" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
