@@ -45,7 +45,8 @@ class User extends Authenticatable
 
     public function getAvatarAttribute($value)
     {
-        return asset('storage/'. $value);
+        $email = $this->attributes['email'];
+        return $value ? asset('storage/'. $value) : "https://i.pravatar.cc/150?u=". $email;
     }
 
     public function setPasswordAttribute($value)

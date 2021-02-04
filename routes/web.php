@@ -25,11 +25,13 @@ Route::middleware('auth')->group(function() {
 
     Route::patch('/profiles/{user}', [Controllers\ProfileController::class, 'update'])
         ->middleware('can:edit,user');
+
+    Route::get('/profiles/{user}', [Controllers\ProfileController::class, 'show'])->name('profile');
+
+    Route::get('/explore', [Controllers\ExploreController::class, 'index'])->name('explore');
 });
 
 Auth::routes();
-
-Route::get('/profiles/{user}', [Controllers\ProfileController::class, 'show'])->name('profile');
 
 Route::get('/', function() {
     return view('auth.login');
