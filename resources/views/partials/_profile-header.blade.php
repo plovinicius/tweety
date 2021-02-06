@@ -4,7 +4,7 @@
         src="https://picsum.photos/700/300" alt="">
 
     <div class="flex justify-between items-center mb-8">
-        <div>
+        <div style="max-width: 245px;">
             <h1 class="font-bold text-2xl mb-0">{{ $user->name }}</h1>
             <p class="text-sm">Joined {{ $user->created_at->diffForHUmans() }}</p>
         </div>
