@@ -17,5 +17,15 @@
         <div class="text-sm">
             <p>{{ $tweet->body }}</p>
         </div>
+
+        <div class="flex items-center">
+            <div class="mr-4">
+                @include('partials.like-btn')
+            </div>
+
+            <div>
+                @include('partials.dislike-btn')
+            </div>
+        </div>
     </div>
 </article>
