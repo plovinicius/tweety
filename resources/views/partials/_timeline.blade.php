@@ -2,4 +2,6 @@
     @foreach ($tweets as $tweet)
         @include('partials.cards._tweet')
     @endforeach
+
+    {{ $tweets->links() }}
 </div>

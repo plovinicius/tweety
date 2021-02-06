@@ -59,7 +59,7 @@ class User extends Authenticatable
         $ids = $this->follows()->pluck('users.id');
         $ids->push($this->id);
 
-        return Tweet::whereIn('user_id', $ids)->latest()->get();
+        return Tweet::whereIn('user_id', $ids)->latest()->paginate(10);
     }
 
     public function tweets()
