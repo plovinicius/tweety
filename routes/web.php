@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function() {
+    return view('auth.login');
+})->middleware('guest');
+
 Route::middleware('auth')->group(function() {
     Route::get('/tweets', [Controllers\TweetController::class, 'index'])->name('home');
     Route::post('/tweets', [Controllers\TweetController::class, 'store']);
@@ -32,7 +36,3 @@ Route::middleware('auth')->group(function() {
 });
 
 Auth::routes();
-
-Route::get('/', function() {
-    return view('auth.login');
-});
